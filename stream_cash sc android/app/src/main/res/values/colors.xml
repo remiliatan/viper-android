@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4582CE</color>
+    <color name="colorPrimaryDark">#4582CE</color>
+    <color name="colorAccent">#4582CE</color>
+    <color name="birutext">#4582CE</color>
+    <color name="light_blue">#71A5E6</color>
+    <color name="back_search">#F3E6E6</color>
+    <color name="putih">#fff</color>
+    <color name="gelap">#ECDFDF</color>
+    <color name="half_black">#333</color>
+    <color name="back_edt">#F7F2F2</color>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Stream Cash</string>
+    <string name="login">Login</string>
+    <string name="daftar_text">Daftar sekarang</string>
+    <string name="nominal">Nominal</string>
+    <string name="transfer">transfer</string>
+    <string name="topup">Top Up</string>
+</resources>
