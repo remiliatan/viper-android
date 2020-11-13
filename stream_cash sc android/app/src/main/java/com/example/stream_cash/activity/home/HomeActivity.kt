@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity(), HomeContracts.View {
     @BindView(R.id.balanceUser) lateinit var balanceUser:TextView
     @BindView(R.id.tblTransfer) lateinit var tblTransfer:TextView
     @BindView(R.id.topUpBtn) lateinit var topupBtn:TextView
+    @BindView(R.id.wdBtn) lateinit var wdBtn:TextView
     @BindView(R.id.namaUser) lateinit var namaUser:TextView
     @BindView(R.id.keluar) lateinit var keluar:TextView
 
@@ -40,6 +41,9 @@ class HomeActivity : AppCompatActivity(), HomeContracts.View {
         }
         tblTransfer.setOnClickListener {
             presenter.navKeTopTrans("Transfer")
+        }
+        wdBtn.setOnClickListener {
+            presenter.navKeTopTrans("Withdraw")
         }
 
         keluar.setOnClickListener {

@@ -81,4 +81,38 @@ class TopUpTransInteractor internal constructor(view: TopUpTransContracts.View) 
             })
 
     }
+
+    override fun prosesWithdraw(nominalTra: String, targetEmail: String) {
+
+        val apiRest = RestApi.makeService()
+        val function = Function()
+        function.showProgress(mContext)
+
+        apiRest.withdrawProses(nominalTra, targetEmail, GlobalString.keyApi)
+            .enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    if (response.isSuccessful) {
+                        val json = JSONObject(response.body()!!.string())
+                        val message = json.getString("message")
+                        val success = json.getInt("success")
+                        if (success != 0) {
+                            viewRegis.resetEditText()
+                        }
+                        viewRegis.showToast(message)
+                        function.dismisDialog()
+                    } else {
+                        viewRegis.showToast("Ada kesalahan")
+                        function.dismisDialog()
+                    }
+
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.e("Error Failure", t.message.toString())
+                }
+            })
+    }
 }

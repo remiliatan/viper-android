@@ -131,6 +131,51 @@ class ProsesController extends Controller
 
     }
 
+    function withdraw(Request $request){
+    	$emailTarget = $request->targetEmail;
+    	$nominal = $request->nominalWithdraw;
+    	$apiKey = "88989291smaka812jae";
+    	$keyResponse = $request->apiKey;
+
+    	if($apiKey == $keyResponse){
+    		$cekData = DB::table('user')->where('emailUser', $emailTarget)->get();
+	    	if(count($cekData) > 0){
+
+	    			//ambil balance sebelumnya
+		    		foreach ($cekData as $value) {
+		    			$balanceSebelumnya = $value->balanceUser;
+		    		}
+
+		    		//jika balance kurang
+		    		if($balanceSebelumnya >= $nominal){
+		    			$finalBalance = (int)$nominal - (int)$balanceSebelumnya;
+
+			    		$finalBalance = (int)$balanceSebelumnya - (int)$nominal;
+
+		    			$updateData = DB::table('user')->where('emailUser', $emailTarget)->update([
+		    				"balanceUser" => $finalBalance
+		    			]);
+		    			if($updateData){
+		    				jsonEncode(1, "Berhasil ditransfer");
+		    			}else{
+		    				jsonEncode(0, "Gagal, mohon coba lagi");
+		    			}
+		    		}else{
+		    				jsonEncode(0, "Saldo tidak cukup");
+		    		}
+
+		    			
+	
+
+	    	}else{
+	    		jsonEncode(0, "E-Mail penerima tidak ditemukan");
+	    	}
+		    		
+    	}else{
+    		jsonEncode(0, "Dilarang");
+    	}
+    }
+
     
 }
 function jsonEncode($angka, $pesan){

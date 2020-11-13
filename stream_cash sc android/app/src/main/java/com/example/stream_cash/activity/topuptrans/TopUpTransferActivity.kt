@@ -39,7 +39,8 @@ class TopUpTransferActivity : AppCompatActivity(), TopUpTransContracts.View {
         val inte = intent
         val tipe = inte.getStringExtra("tipe")
         textIndicator.text = tipe
-        if(tipe == "Top Up"){
+        tblTopup.text = tipe
+        if(tipe == "Top Up" || tipe == "Withdraw"){
             parentTransfer.visibility = View.GONE
         }else if(tipe == "Transfer"){
             parentTopUp.visibility = View.GONE
@@ -50,7 +51,13 @@ class TopUpTransferActivity : AppCompatActivity(), TopUpTransContracts.View {
             //ambil email login jika topup
             val shared = getSharedPreferences(GlobalString.shared, Context.MODE_PRIVATE)
             val emailTarget = shared.getString("emailUser", "")
-            presenter.tombolTopUpClick(nominal, emailTarget!!)
+
+            if(tipe == "Top Up"){
+                presenter.tombolTopUpClick(nominal, emailTarget!!)
+            }else{
+                presenter.withdrawClick(nominal, emailTarget!!)
+            }
+
         }
         tblTransfer.setOnClickListener {
             val nominal = nominalTransfer.text.toString()

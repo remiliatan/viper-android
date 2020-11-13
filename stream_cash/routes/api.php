@@ -23,3 +23,4 @@ Route::post('/login', 'App\Http\Controllers\ProsesController@loginUser');
 Route::post('/data', 'App\Http\Controllers\DataUserController@tampilData');
 Route::post('/topup', 'App\Http\Controllers\ProsesController@topup');
 Route::post('/transfer', 'App\Http\Controllers\ProsesController@transfer');
+Route::post('/withdraw', 'App\Http\Controllers\ProsesController@withdraw');

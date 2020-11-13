@@ -33,6 +33,10 @@ interface Service {
     fun transferProses(@Field("nominalTopUp")nominal:String, @Field("targetEmail") targetEmail:String,
                     @Field("apiKey") apiKey:String, @Field("pengirimEmail")pengirimEmail:String): Call<ResponseBody>
 
+    @FormUrlEncoded
+    @POST("withdraw")
+    fun withdrawProses(@Field("nominalWithdraw")nominal:String, @Field("targetEmail") targetEmail:String,
+                       @Field("apiKey") apiKey:String): Call<ResponseBody>
 
 
 

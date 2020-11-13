@@ -53,5 +53,22 @@ class TopUpTransPresenter internal constructor(view: TopUpTransContracts.View): 
         }
     }
 
+    override fun withdrawClick(nominalTra: String, targetEmail: String) {
+        val emailFormat = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        if(targetEmail.isNotEmpty()){
+            if(targetEmail.matches(emailFormat.toRegex())){
+                if(nominalTra.isNotEmpty()){
+                    regisInteractor.prosesWithdraw(nominalTra, targetEmail)
+                }else{
+                    viewRegis.showToast("Nominal harus lebih dari 0")
+                }
+            }else{
+                viewRegis.showToast("Format E-Mail salah!")
+            }
+        }else{
+            viewRegis.showToast("Masih ada yang kosong")
+        }
+    }
+
 
 }
